@@ -1,0 +1,23 @@
+{
+    "users": [{
+        "name": "Carvajal",
+        "email": "carvajal@gmail.com",
+        "password": "e15478485ea642f648c0e155db5b4cee4338bb6886d002b957c0bf258cf513b0",
+        "salt": 2001400758018471
+    }],
+    "ads": [{
+            "name": "Coke",
+            "on_sale": false,
+            "price": 15,
+            "photo": "coke_ad.png",
+            "tags": ["work", "lifestyle", "motor"]
+        },
+        {
+            "name": "Bicicleta",
+            "on_sale": true,
+            "price": 230.15,
+            "photo": "bici.jpg",
+            "tags": ["lifestyle", "motor"]
+        }
+    ]
+}
