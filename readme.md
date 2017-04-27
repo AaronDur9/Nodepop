@@ -81,7 +81,7 @@ Examples:
     ```
     Get method to: api/ads?tags=motor,mobile&price=-100&sort=name&token=1234
     ```
-* Searching ads whose name starts with 'C', a price between 50 and 300 and sort by price:
+* Searching ads whose name starts with 'B', a price between 50 and 300 and sort by price:
     ```
     Get method to: api/ads?name=B&price=50-300&sort=price&token=1234
     ```
