@@ -43,8 +43,8 @@ router.post('/register', (req, res, next) => {
 
     user.save((err, insertedUser) => {
         if (err) {
-            const error = new CustomError(err);
-            next(error);
+            const error = new CustomError('MONGODB_INSERT_ERROR', req.lan);
+            res.json(error);
             return;
         }
         res.json({ success: true, result: insertedUser });
@@ -71,7 +71,7 @@ router.post('/login', (req, res, next) => {
             return;
         }
         if (!user) {
-            const error = new CustomError('El email de usuario no se encuentra registrado');
+            const error = new CustomError('EMAIL_NOT_FOUND', req.lan);
             res.json(error);
             return;
         }
@@ -82,15 +82,16 @@ router.post('/login', (req, res, next) => {
 
 
         if (hash !== user.password) {
-            const error = new CustomError('Contraseña incorrecta');
-            res.json({ error });
+            //console.log(req);
+            const error = new CustomError('WRONG_PASS', req.lan);
+            res.json(error);
             return;
         }
         //Si la pass coincide, creamos un token  JWT
         jwt.sign({ user_id: user._id }, config.jwtSecret, config.jwtConfig, (err, token) => {
             if (err) {
-                const error = new CustomError(err);
-                res.json({ error });
+                const error = new CustomError('JWT_ERROR', req.lan);
+                res.json(error);
                 return;
             }
             //Se lo devolvemos

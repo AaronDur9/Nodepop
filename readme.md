@@ -13,33 +13,23 @@ Then make sure you meet all the prerequisites and follow the installing instruct
 ### Prerequisites
 
 * NodeJS
-    ```Give examples```
+    https://nodejs.org/es/
 * NPM
-    ```Give examples```
+    It is included in NodeJS installation.
 * MongoDB
-    ```Give examples```
+    https://www.mongodb.com/download-center#community
+* Nodemon
+    ```npm install nodemon```
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
+1. Open Node prompt and go to the nodepop ubication in your system.
+2. Then run ```npm install``` for installing dependencies.
+3. Start your mongoDB server.
+4. Again in Node Prompt,  run ```npm run installDB``` to initialize the data base.
+5. Finally, run nodemon in the root directory and enjoy!
 
 ### Api
-
 #### Users
     
 ##### Register
@@ -91,11 +81,27 @@ Examples:
     ```
     Get method to: api/ads?tags=motor,mobile&price=-100&sort=name&token=1234
     ```
+* Searching ads whose name starts with 'C', a price between 50 and 300 and sort by price:
+    ```
+    Get method to: api/ads?name=B&price=50-300&sort=price&token=1234
+    ```
 
 #### Search the tags
 
 You just have to send a Get to api/ads/tags and you will see all the tags registered in the app.
-```
+    ```
     Get method to: api/ads/tags?token=1234
     ```
 
+### Errors
+Every error in the app is shown to the user in json format. 
+The api gives you the opportunity to choose the language of those;
+For using this feature you must add a parameter 'lan' as optional after '?' with value 'es' or 'en'.
+Example 1: Choosing spanish language for possible errors in login:
+```
+POST method to  /users/login?lan=es
+```
+Example 2: Choosing english language for possible errors in the search of ads:
+```
+Get method to: api/ads?tags=motor,mobile&price=-100&lan=en
+```

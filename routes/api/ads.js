@@ -105,8 +105,8 @@ router.get('/', (req, res, next) => {
     //recuperamos una lista de agentes
     Ad.list(filters, +limit, skip, sort, (err, ads) => {
         if (err) {
-            const error = new CustomError(err);
-            res.json({ error });
+            const error = new CustomError('MONGODB_QUERY_ERROR', req.lan);
+            res.json(error);
             return;
         }
         res.json({ success: true, tags: ads });
@@ -130,8 +130,8 @@ router.get('/tags', (req, res, next) => {
         }
     ], function(err, tags) {
         if (err) {
-            const error = new CustomError(err);
-            res.json({ error });
+            const error = new CustomError('MONGODB_QUERY_ERROR', req.lan);
+            res.json(error);
             return;
         }
         res.json({ success: true, tags: tags });

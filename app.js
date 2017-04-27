@@ -17,13 +17,13 @@ var index = require('./routes/index');
 var app = express();
 
 
-// --Autenticación
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -34,11 +34,25 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/ads', express.static(path.join(__dirname, 'public')));
 
+
+//En cualquier petición puede aparecer el parámetro lan que indica el idioma de los errores
+app.use('/*', (req, res, next) => {
+    const lan = req.query.lan;
+    if (lan) {
+        req.lan = lan;
+    } else {
+        req.lan = 'es';
+    }
+
+    next();
+});
+
 //Rutas de la aplicación
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/api', require('./lib/jwAuth'));
 app.use('/api/ads', require('./routes/api/ads'));
+
 
 
 // catch 404 and forward to error handler

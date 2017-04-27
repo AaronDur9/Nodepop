@@ -2,30 +2,16 @@
 
 
 
-//Creamos un constructor de objetos
-/*
-function CustomError(err, message) {
-    this.err = err;
-    this.message = message;
 
-    this.showError = function() {
-        console.log(message, err);
-    };
-}
+const translate = require('./translate.js');
 
-*/
-function CustomError(message) {
+//Le pasamos la clave del error
+//Con esto llama a translate y coge el mensaje de error en el idioma indicado
+//Y esto es lo que coloca en la variable message
+function CustomError(key, language) {
     this.success = false;
-    this.errorMessage = message;
-
-    /*
-    this.setMessage = function(value) {
-        message = value;
-    };
-    */
-    this.showCustomError = function() {
-        console.log(message);
-    };
+    this.errorKey = key;
+    this.errorMessage = translate(key, language);
 }
 
 module.exports = CustomError;
